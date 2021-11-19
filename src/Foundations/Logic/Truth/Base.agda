@@ -14,3 +14,7 @@ recursion-⊤ value-at-truth-is-true truth-is-true = value-at-truth-is-true
 
 introduction-⊤ : ⊤
 introduction-⊤ = truth-is-true
+
+module _ {ℓ} {A : Type ℓ} where
+  apply-at-truth-is-true : (⊤ → A) → A
+  apply-at-truth-is-true = λ z → z truth-is-true
