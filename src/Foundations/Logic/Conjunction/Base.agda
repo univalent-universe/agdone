@@ -38,9 +38,17 @@ module _ {ℓ ℓ'} {A : Type ℓ} {B : Type ℓ'} where
   swap-× : A × B → B × A
   swap-× (first , second) = second , first
 
-  bimap-× : ∀ {ℓ'' ℓ'''} {C : Type ℓ''} {D : Type ℓ'''} → (A → C) → (B → D) → A × B → C × D
+  bimap-× : ∀ {ℓ'' ℓ'''} {C : Type ℓ''} {D : Type ℓ'''} → (A → C) → (B → D)
+    → A × B → C × D
   bimap-× f g (first , second) = f first , g second
 
+  extract-map-into-×-left : ∀ {ℓ''} {C : Type ℓ''} → (C → A × B) → C → A
+  extract-map-into-×-left p z with p z
+  ... | first , second = first
+
+  extract-map-into-×-right : ∀ {ℓ''} {C : Type ℓ''} → (C → A × B) → C → B
+  extract-map-into-×-right p z with p z
+  ... | first , second = second
 
 module _ {ℓ ℓ' ℓ''} {A : Type ℓ} {B : Type ℓ'} {C : Type ℓ''} where
   assoc-right-to-left-× : A × (B × C) → (A × B) × C
