@@ -7,7 +7,7 @@ data _⊎_ {ℓ ℓ'} (A : Type ℓ) (B : Type ℓ') : Type (ℓ Level.⊔ ℓ')
   left : A → A ⊎ B
   right : B → A ⊎ B
 
-infixr 30 _⊎_
+infixr 25 _⊎_
 
 module _ {ℓ} {A : Type ℓ} where
   codiag-⊎ : A ⊎ A → A
