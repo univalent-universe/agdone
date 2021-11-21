@@ -78,3 +78,25 @@ module _ {ℓ} {A : Type ℓ} where
    (α : p ≡ p') → neutral-·-refl-right p' · (α ◼ refl {a = refl}) ·
      sym (neutral-·-refl-right p) ≡ α
   neutral-◼-refl-right {p = refl} refl = refl
+
+module _ {ℓ ℓ'} {A : Type ℓ} {B : Type ℓ'} where
+  apply-eq : (f : A → B) → {x y : A} → x ≡ y → f x ≡ f y
+  apply-eq f refl = refl
+
+module _ {ℓ ℓ'} {A : Type ℓ} {P : A → Type ℓ'} where
+  subst : {x y : A} → P x → x ≡ y → P y
+  subst prf refl = prf
+
+  dep-apply-eq : (f : (a : A) → P a) → {x y : A} → (p : x ≡ y) →
+    subst (f x) p ≡ f y
+  dep-apply-eq f refl = refl
+
+module _ {ℓ ℓ' ℓ''} {A : Type ℓ} {B : Type ℓ'} {C : Type ℓ''} where
+  apply-eq-2 : (f : A → B → C) → {x x' : A} → {y y' : B} → x ≡ x' →
+    y ≡ y' → f x y ≡ f x' y'
+  apply-eq-2 f refl refl = refl
+
+module _ {ℓ ℓ' ℓ''} {A : Type ℓ} {P : A → Type ℓ'} {C : Type ℓ''} where
+  dep-2-apply-eq-2 : (f : (a : A) → P a → C) → {x x' : A} → {y : P x} →
+    {y' : P x'} → (p : x ≡ x') → subst y p ≡ y' → f x y ≡ f x' y'
+  dep-2-apply-eq-2 f refl refl = refl
