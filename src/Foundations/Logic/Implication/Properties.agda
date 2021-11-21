@@ -1,12 +1,13 @@
 {-# OPTIONS --no-import-sorts --without-K #-}
 
-module Foundations.Logic.Implication.Base where
+module Foundations.Logic.Implication.Properties where
 
 open import Foundations.Universes.Base
 module _ {ℓ} {A : Type ℓ} where
-  identity : A → A
+  identity reflexive-→ : A → A
   identity = λ z → z
-
+  reflexive-→ = identity
+  
 module _ {ℓ ℓ'} {A : Type ℓ} {B : Type ℓ'} where
   →-recursion : (A → B) → A → B
   →-recursion = λ z → z
@@ -33,9 +34,10 @@ module _ {ℓ ℓ' ℓ''} {A : Type ℓ} {B : Type ℓ'} {C : Type ℓ''} where
   compose-flipped : (A → B) → (B → C) → A → C
   compose-flipped = λ z z₁ z₂ → z₁ (z z₂)
 
-  compose : (B → C) → (A → B) → A → C
+  compose transitive-→ : (B → C) → (A → B) → A → C
   compose = λ z z₁ z₂ → z (z₁ z₂)
-
+  transitive-→ = compose
+  
   map-→ : (A → C) → (B → A) → (B → C)
   map-→ = λ z z₁ z₂ → z (z₁ z₂)
 
