@@ -38,9 +38,9 @@ module _ {ℓ ℓ'} {A : Type ℓ} {B : Type ℓ'} where
   map-⊎-right f (left x) = left x
   map-⊎-right f (right x) = right (f x)
 
-  swap-⊎ : A ⊎ B → B ⊎ A
-  swap-⊎ (left x) = right x
-  swap-⊎ (right x) = left x
+  commutative-⊎ : A ⊎ B → B ⊎ A
+  commutative-⊎ (left x) = right x
+  commutative-⊎ (right x) = left x
 
   bimap-⊎ : ∀ {ℓ'' ℓ'''} {C : Type ℓ''} {D : Type ℓ'''} → (A → C) → (B → D) →
     A ⊎ B → C ⊎ D

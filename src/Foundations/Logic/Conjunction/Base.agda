@@ -35,8 +35,8 @@ module _ {ℓ ℓ'} {A : Type ℓ} {B : Type ℓ'} where
   map-×-right : ∀ {ℓ''} {C : Type ℓ''} → (B → C) → A × B → A × C
   map-×-right f (first , second) = first , f second
 
-  swap-× : A × B → B × A
-  swap-× (first , second) = second , first
+  commutative-× : A × B → B × A
+  commutative-× (first , second) = second , first
 
   bimap-× : ∀ {ℓ'' ℓ'''} {C : Type ℓ''} {D : Type ℓ'''} → (A → C) → (B → D)
     → A × B → C × D
