@@ -52,7 +52,7 @@ module _ {ℓ ℓ'} {A : Type ℓ} {B : Type ℓ'} where
 
   extract-map-out-of-⊎-right : ∀ {ℓ''} {C : Type ℓ''} → (A ⊎ B → C) → B → C
   extract-map-out-of-⊎-right f x = f (right x)
-  
+
 module _ {ℓ ℓ' ℓ''} {A : Type ℓ} {B : Type ℓ'} {C : Type ℓ''} where
   assoc-right-to-left-⊎ : A ⊎ (B ⊎ C) → (A ⊎ B) ⊎ C
   assoc-right-to-left-⊎ (left x) = left (left x)

@@ -50,6 +50,7 @@ module _ {ℓ ℓ'} {A : Type ℓ} {B : Type ℓ'} where
   extract-map-into-×-right p z with p z
   ... | first , second = second
 
+
 module _ {ℓ ℓ' ℓ''} {A : Type ℓ} {B : Type ℓ'} {C : Type ℓ''} where
   assoc-right-to-left-× : A × (B × C) → (A × B) × C
   assoc-right-to-left-× (first , (first₁ , second)) = (first , first₁) , second
