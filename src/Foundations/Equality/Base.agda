@@ -37,6 +37,12 @@ module _ {ℓ} {A : Type ℓ} where
   neutral-·-refl-right : {a b : A} → (p : a ≡ b) → p · refl ≡ p
   neutral-·-refl-right refl = refl
 
+  inverse-·-sym-left : {a b : A} → (p : a ≡ b) → sym p · p ≡ refl
+  inverse-·-sym-left refl = refl
+
+  inverse-·-sym-right : {a b : A} → (p : a ≡ b) → p · sym p ≡ refl
+  inverse-·-sym-right refl = refl
+  
   associative-· : {a b c d : A} → (p : c ≡ d) → (q : b ≡ c) → (r : a ≡ b) →
     p · (q · r) ≡ (p · q) · r
   associative-· refl refl refl = refl
@@ -57,3 +63,18 @@ module _ {ℓ} {A : Type ℓ} where
                          (α' : p ≡ p') (β : q' ≡ q'') (β' : q ≡ q') →
                          α · α' ◼ (β · β') ≡ (α ◼ β) · (α' ◼ β')
   interchange-◼-· refl refl refl refl = refl
+  associative-◼ : {a b c d : A} {p p' : c ≡ d} {q q' : b ≡ c} {r r' : a ≡ b}
+    → (α : p ≡ p') → (β : q ≡ q') → (γ : r ≡ r') →
+        associative-· p' q' r' · (α ◼ (β ◼ γ))
+        · sym (associative-· p q r)  ≡ (α ◼ β) ◼ γ
+  associative-◼ {p = refl} {q = refl} {r = refl} refl refl refl = refl
+
+  neutral-◼-refl-left : {a b c : A} {p : b ≡ c} {q q' : a ≡ b}
+   (α : q ≡ q') → neutral-·-refl-left q' · (refl {a = refl} ◼ α) ·
+     sym (neutral-·-refl-left q) ≡ α
+  neutral-◼-refl-left {q = refl} refl = refl
+
+  neutral-◼-refl-right : {a b c : A} {p p' : b ≡ c} {q : a ≡ b}
+   (α : p ≡ p') → neutral-·-refl-right p' · (α ◼ refl {a = refl}) ·
+     sym (neutral-·-refl-right p) ≡ α
+  neutral-◼-refl-right {p = refl} refl = refl
