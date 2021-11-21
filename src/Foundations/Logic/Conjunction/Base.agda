@@ -56,3 +56,10 @@ module _ {ℓ ℓ' ℓ''} {A : Type ℓ} {B : Type ℓ'} {C : Type ℓ''} where
 
   assoc-left-to-right-× : (A × B) × C → A × (B × C)
   assoc-left-to-right-× ((first , second₁) , second) = first , (second₁ , second)
+
+  distributive-left-product-to-sum-→-× : (C → A × B) → (C → A) × (C → B)
+  distributive-left-product-to-sum-→-× f =
+    (λ x → _×_.first (f x)) , (λ x → _×_.second (f x))
+  distributive-left-sum-to-product-→-× : (C → A) × (C → B) → C → A × B
+  distributive-left-sum-to-product-→-× (first , second) x =
+    first x , second x
