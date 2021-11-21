@@ -14,13 +14,15 @@ record ¬_ {ℓ} (A : Type ℓ) : Type ℓ where
   implies-anything x with implies-falsehood x
   ... | ()
 
+infix 40 ¬_ 
+
 module _ {ℓ} {A : Type ℓ} where
   double-¬ : A → ¬ ¬ A
   double-¬ x = is-absurd (λ z → ¬_.implies-falsehood z x)
 
   ¬-self-implies-anything : ∀ {ℓ'} {B : Type ℓ'} → A → ¬ A → B
   ¬-self-implies-anything x y = ¬_.implies-anything (is-absurd (λ z → z))
-                                  (implies-falsehood x)
+                                  (¬_.implies-falsehood y x)
     where open ¬_ y
 
   triple-¬-to-¬ : ¬ ¬ ¬ A → ¬ A
@@ -34,8 +36,6 @@ module _ {ℓ} {A : Type ℓ} where
                       (λ z → ¬_.implies-falsehood z
                       (is-absurd (¬_.implies-falsehood x)))
 
-  to-all-to-¬ : ∀ {ℓ'} → ((B : Type ℓ') → A → B) → ¬ A
-  to-all-to-¬ {ℓ'} f = is-absurd (λ x → {!!})
   
 module _ {ℓ ℓ'} {A : Type ℓ} {B : Type ℓ'} where
   to-self-and-neg-to-neg : (A → B) → (A → ¬ B) → ¬ A
