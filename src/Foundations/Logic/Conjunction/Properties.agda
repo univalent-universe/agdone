@@ -35,3 +35,27 @@ module _ where
 
   induction-⊥-×-⊥ : ∀ {ℓ'} {P : ⊥ × ⊥ → Type ℓ'} → (x : ⊥ × ⊥) → P x
   induction-⊥-×-⊥ (() , ())
+
+module _ where
+  open import Foundations.Logic.Disjunction.Base
+  module _ {ℓ ℓ' ℓ''} {A : Type ℓ} {B : Type ℓ'} {C : Type ℓ''} where
+    distributive-left-sum-to-product-×-⊎ : (A × B) ⊎ (A × C) → A × (B ⊎ C)
+    distributive-left-sum-to-product-×-⊎ (left (first , second)) =
+      first , left second
+    distributive-left-sum-to-product-×-⊎ (right (first , second)) =
+      first , right second
+    distributive-right-sum-to-product-×-⊎ : (B × A) ⊎ (C × A) → (B ⊎ C) × A
+    distributive-right-sum-to-product-×-⊎ (left (first , second)) =
+      left first , second
+    distributive-right-sum-to-product-×-⊎ (right (first , second)) =
+      right first , second
+    distributive-left-product-to-sum-×-⊎ : A × (B ⊎ C) → (A × B) ⊎ (A × C)
+    distributive-left-product-to-sum-×-⊎ (first , left x) = left (first , x)
+    distributive-left-product-to-sum-×-⊎ (first , right x) =
+      right (first , x)
+    distributive-right-product-to-sum-×-⊎ : (B ⊎ C) × A → (B × A) ⊎ (C × A)
+    distributive-right-product-to-sum-×-⊎ (left x , second) =
+      left (x , second)
+    distributive-right-product-to-sum-×-⊎ (right x , second) =
+      right (x , second)
+    
